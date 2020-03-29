@@ -6,12 +6,12 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>JackBlue</title>
+  <title>Tag: 安卓View | JackBlue</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="JackBlue&#39;s博客">
 <meta property="og:type" content="website">
 <meta property="og:title" content="JackBlue">
-<meta property="og:url" content="http://yoursite.com/index.html">
+<meta property="og:url" content="http://yoursite.com/tags/%E5%AE%89%E5%8D%93View/index.html">
 <meta property="og:site_name" content="JackBlue">
 <meta property="og:description" content="JackBlue&#39;s博客">
 <meta property="og:locale" content="zh_CN">
@@ -153,62 +153,34 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-ListView简单用法" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
+  
     
-      <header class="article-header">
-        
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/archives/2020" class="archive-year">2020</a>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      	<div class="article-meta">
+	      	<a href="/2020/03/29/ListView%E7%AE%80%E5%8D%95%E7%94%A8%E6%B3%95/" class="archive-article-date">
+  	<time datetime="2020-03-29T06:53:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-29</time>
+</a>
+        </div>
+    	 
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2020/03/29/ListView%E7%AE%80%E5%8D%95%E7%94%A8%E6%B3%95/">ListView简单用法</a>
+      <a class="archive-article-title" href="/2020/03/29/ListView%E7%AE%80%E5%8D%95%E7%94%A8%E6%B3%95/">ListView简单用法</a>
     </h1>
   
 
-        
-        <a href="/2020/03/29/ListView%E7%AE%80%E5%8D%95%E7%94%A8%E6%B3%95/" class="archive-article-date">
-  	<time datetime="2020-03-29T06:53:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-29</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>[TOC]</p>
-<h1 id="ListView控件简单介绍"><a href="#ListView控件简单介绍" class="headerlink" title="ListView控件简单介绍"></a>ListView控件简单介绍</h1><p>&emsp;ListView是安卓上使用最多的控件之一,几乎所有的应用程序都会使用它.由于手机空间有限,一次性只能显示一部分内容,所以需要借助滚动的方式显示更多的内容.平时我们使用的qq,微博都是用到了此功能;<br>&emsp;ListView控件不能直接获取数组,对象的之,所以我们需要使用一个适配器(Adapter)来帮助ListView获取值(请看下面简单示例);</p>
-<h1 id="ListView的简单使用"><a href="#ListView的简单使用" class="headerlink" title="ListView的简单使用"></a>ListView的简单使用</h1><details>
-<summary><font color="red">1. 新建一个Action,并且此活动要是主动(或者使用其他方式打开多动)</font></summary>
-<pre><code>
-    <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">//AndroidManifest.xml,注册Action的配置文件</span><br><span class="line">//没有注册的action不能运行,Android studio在创建</span><br><span class="line">//actiuon时会自动注册</span><br><span class="line">...</span><br><span class="line"><span class="tag">&lt;<span class="name">activity</span> <span class="attr">android:name</span>=<span class="string">".MainActivity"</span>&gt;</span></span><br><span class="line">           <span class="tag">&lt;<span class="name">intent-filter</span>&gt;</span></span><br><span class="line">               <span class="tag">&lt;<span class="name">action</span> <span class="attr">android:name</span>=<span class="string">"android.intent.action.MAIN"</span>/&gt;</span></span><br><span class="line">               <span class="tag">&lt;<span class="name">category</span> <span class="attr">android:name</span>=<span class="string">"android.intent.category.LAUNCHER"</span>/&gt;</span></span><br><span class="line">           <span class="tag">&lt;/<span class="name">intent-filter</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;/<span class="name">activity</span>&gt;</span></span><br><span class="line">...</span><br></pre></td></tr></table></figure>
-</code></pre>
-</details>
-
-<details>
-<summary><font color="red">2. 配置对应的layout布局文件配置代码如下</font></summary>
-<pre><code>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version="1.0" encoding="utf-8"?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">LinearLayout</span> <span class="attr">xmlns:android</span>=<span class="string">"http://schemas.android.com/apk/res/android"</span></span></span><br><span class="line"><span class="tag"><span class="attr">xmlns:app</span>=<span class="string">"http://schemas.android.com/apk/res-auto"</span></span></span><br><span class="line"><span class="tag"><span class="attr">xmlns:tools</span>=<span class="string">"http://schemas.android.com/tools"</span></span></span><br><span class="line"><span class="tag"><span class="attr">android:layout_width</span>=<span class="string">"match_parent"</span></span></span><br><span class="line"><span class="tag"><span class="attr">android:layout_height</span>=<span class="string">"match_parent"</span></span></span><br><span class="line"><span class="tag">//<span class="attr">LinearLayout</span>必须配置内部元素排布方向;</span></span><br><span class="line"><span class="tag"><span class="attr">android:orientation</span>=<span class="string">"vertical"</span></span></span><br><span class="line"><span class="tag">//这里是对应的<span class="attr">action</span>类;</span></span><br><span class="line"><span class="tag"><span class="attr">tools:context</span>=<span class="string">".MainActivity"</span>&gt;</span></span><br><span class="line">//建立ListView控件并且width和height都占据父容器;</span><br><span class="line"><span class="tag">&lt;<span class="name">ListView</span></span></span><br><span class="line"><span class="tag"><span class="attr">android:id</span>=<span class="string">"@+id/listView"</span></span></span><br><span class="line"><span class="tag"><span class="attr">android:layout_width</span>=<span class="string">"match_parent"</span></span></span><br><span class="line"><span class="tag"><span class="attr">android:layout_height</span>=<span class="string">"match_parent"</span></span></span><br><span class="line"><span class="tag">/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">LinearLayout</span>&gt;</span></span><br></pre></td></tr></table></figure>
-</code></pre>
-</details>
-
-<details>
-<summary><font color="red">3. 配置action类初始化ViewList类,给值赋值</font></summary>
-<pre><code>
-
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.jackblue.myapplication;</span><br><span class="line"><span class="keyword">import</span> androidx.appcompat.app.AppCompatActivity;</span><br><span class="line"><span class="keyword">import</span> android.os.Bundle;</span><br><span class="line"><span class="keyword">import</span> android.widget.ArrayAdapter;</span><br><span class="line"><span class="keyword">import</span> android.widget.ListView;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ListViewTest</span> <span class="keyword">extends</span> <span class="title">AppCompatActivity</span> </span>&#123;</span><br><span class="line">    String[] str = <span class="keyword">new</span> String[<span class="number">15</span>];</span><br><span class="line">    <span class="comment">//初始化数组,用于ListView的列表项</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">15</span>; i++) &#123;</span><br><span class="line">            str[i] = <span class="string">"list"</span>+(i+<span class="number">1</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//初始化数据,和action生命周期有关</span></span><br><span class="line">        <span class="keyword">super</span>.onCreate(savedInstanceState);</span><br><span class="line">        setContentView(R.layout.activity_list_view);</span><br><span class="line">        <span class="comment">//获取listView控件</span></span><br><span class="line">        ListView listView = (ListView) findViewById(R.id.listView);</span><br><span class="line">        <span class="comment">//生成适配器类,给listView赋值</span></span><br><span class="line">        ArrayAdapter&lt;String&gt; listAdapter = <span class="keyword">new</span> ArrayAdapter&lt;String&gt;(ListViewTest.<span class="keyword">this</span>,</span><br><span class="line">                android.R.layout.simple_list_item_1, str);</span><br><span class="line">        <span class="comment">//listView加载数据</span></span><br><span class="line">        listView.setAdapter(listAdapter);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p></code></code></p>
-</details>
-<img src="/image/android/listView1.png" />  
-<br/>
-<img src="/image/android/listView2.gif" width="350px" />
-        
-          <a class="article-more-a" href="/2020/03/29/ListView%E7%AE%80%E5%8D%95%E7%94%A8%E6%B3%95/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
+        <div class="article-info info-on-right">
+          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -228,123 +200,19 @@
 		</ul>
 	</div>
 
-      
+          
 
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/03/29/ListView%E7%AE%80%E5%8D%95%E7%94%A8%E6%B3%95/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
+        </div>
+        <div class="clearfix"></div>
+    </header>
   </div>
 </article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
   
-    <article id="post-黑盒测试And因果图法" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
+  
+    </div></section>
+  
+
     
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/03/28/%E9%BB%91%E7%9B%92%E6%B5%8B%E8%AF%95And%E5%9B%A0%E6%9E%9C%E5%9B%BE%E6%B3%95/">黑盒测试And因果图法</a>
-    </h1>
-  
-
-        
-        <a href="/2020/03/28/%E9%BB%91%E7%9B%92%E6%B5%8B%E8%AF%95And%E5%9B%A0%E6%9E%9C%E5%9B%BE%E6%B3%95/" class="archive-article-date">
-  	<time datetime="2020-03-28T13:17:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-28</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>[TOC]</p>
-<h1 id="软件测试-amp-因果图法"><a href="#软件测试-amp-因果图法" class="headerlink" title="软件测试&amp;因果图法"></a>软件测试&amp;因果图法</h1><p>&emsp;&emsp;边界值分析法和等价类划分法的一个弱点是没有对<u><font color="red">输入输出以及输入与输出之间</font></u>的关系进行进行分析.<br>&emsp;&emsp;举例来所， 当程序需要判断你的性别(‘男’, ‘女’)，从而进行下一步的判断，从而进入下一步判断. 那么男和女这两个输入值的之间关系就是<u>有且只有一个，且必须为男或女，不能为空</u>(没有人的性别是这两个之间的其他吧!)程序才可以进行下一步;<br>&emsp;&emsp;<font size="4" color="red">因果图不光表明输入, 输出自己的内部的关系,还表示了输入与输出之间的关系</font>上面<u>输入</u>的’男’或’女’在输入<u>输出</u>一个果，选择后都可以进入系统,进入这个系统代表输入和输出之间的关系为’恒等关系’;  </p>
-<img src="/image/programTest/ygt1.png"/>
-        
-          <a class="article-more-a" href="/2020/03/28/%E9%BB%91%E7%9B%92%E6%B5%8B%E8%AF%95And%E5%9B%A0%E6%9E%9C%E5%9B%BE%E6%B3%95/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">软件测试</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">黑盒测试</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/03/28/%E9%BB%91%E7%9B%92%E6%B5%8B%E8%AF%95And%E5%9B%A0%E6%9E%9C%E5%9B%BE%E6%B3%95/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-  
 
 
           </div>
@@ -366,10 +234,10 @@
     <script>
 	var yiliaConfig = {
 		mathjax: false,
-		isHome: true,
+		isHome: false,
 		isPost: false,
 		isArchive: false,
-		isTag: false,
+		isTag: true,
 		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,

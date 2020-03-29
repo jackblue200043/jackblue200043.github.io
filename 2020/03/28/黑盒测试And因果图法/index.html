@@ -8,21 +8,27 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>黑盒测试And因果图法 | JackBlue</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="[TOC] 软件测试&amp;因果图法&amp;emsp;&amp;emsp;边界值分析和等价类划分的一个弱点是为对输入条件进行的组合进行分析.&amp;emsp;&amp;emsp;举例来所， 当程序需要判断你的性别(‘男’, ‘女’)，从而进行下一步的判断，是进入那个程序界面。那么男和女这两个输入值的关系就是有且只有一个，切必须为男或女，不能为空程序才可以进行下一步;&amp;emsp;&amp;emsp;因果图不光表明输入之间的关系，还表">
+  <meta name="description" content="[TOC] 软件测试&amp;因果图法&amp;emsp;&amp;emsp;边界值分析法和等价类划分法的一个弱点是没有对输入输出以及输入与输出之间的关系进行进行分析.&amp;emsp;&amp;emsp;举例来所， 当程序需要判断你的性别(‘男’, ‘女’)，从而进行下一步的判断，从而进入下一步判断. 那么男和女这两个输入值的之间关系就是有且只有一个，且必须为男或女，不能为空(没有人的性别是这两个之间的其他吧!)程序才可以进">
 <meta property="og:type" content="article">
 <meta property="og:title" content="黑盒测试And因果图法">
 <meta property="og:url" content="http://yoursite.com/2020/03/28/%E9%BB%91%E7%9B%92%E6%B5%8B%E8%AF%95And%E5%9B%A0%E6%9E%9C%E5%9B%BE%E6%B3%95/index.html">
 <meta property="og:site_name" content="JackBlue">
-<meta property="og:description" content="[TOC] 软件测试&amp;因果图法&amp;emsp;&amp;emsp;边界值分析和等价类划分的一个弱点是为对输入条件进行的组合进行分析.&amp;emsp;&amp;emsp;举例来所， 当程序需要判断你的性别(‘男’, ‘女’)，从而进行下一步的判断，是进入那个程序界面。那么男和女这两个输入值的关系就是有且只有一个，切必须为男或女，不能为空程序才可以进行下一步;&amp;emsp;&amp;emsp;因果图不光表明输入之间的关系，还表">
+<meta property="og:description" content="[TOC] 软件测试&amp;因果图法&amp;emsp;&amp;emsp;边界值分析法和等价类划分法的一个弱点是没有对输入输出以及输入与输出之间的关系进行进行分析.&amp;emsp;&amp;emsp;举例来所， 当程序需要判断你的性别(‘男’, ‘女’)，从而进行下一步的判断，从而进入下一步判断. 那么男和女这两个输入值的之间关系就是有且只有一个，且必须为男或女，不能为空(没有人的性别是这两个之间的其他吧!)程序才可以进">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://yoursite.com/image/ygt1.png">
+<meta property="og:image" content="http://yoursite.com/image/programTest/ygt1.png">
+<meta property="og:image" content="http://yoursite.com/image/programTest/inputRelation1.png">
+<meta property="og:image" content="http://yoursite.com/image/programTest/inputRelation2.png">
+<meta property="og:image" content="http://yoursite.com/image/programTest/inputRelation3.png">
+<meta property="og:image" content="http://yoursite.com/image/programTest/outputRelation.png">
+<meta property="og:image" content="http://yoursite.com/image/programTest/inputAndOutputRelation.png">
+<meta property="og:image" content="http://yoursite.com/image/programTest/example1.png">
 <meta property="article:published_time" content="2020-03-28T13:17:00.000Z">
-<meta property="article:modified_time" content="2020-03-28T15:49:21.987Z">
+<meta property="article:modified_time" content="2020-03-29T05:32:29.309Z">
 <meta property="article:author" content="JackBlue">
 <meta property="article:tag" content="软件测试">
 <meta property="article:tag" content="黑盒测试">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://yoursite.com/image/ygt1.png">
+<meta name="twitter:image" content="http://yoursite.com/image/programTest/ygt1.png">
   
     <link rel="alternative" href="/atom.xml" title="JackBlue" type="application/atom+xml">
   
@@ -178,28 +184,65 @@
       
 		
 <div id="toc">
-  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#软件测试-amp-因果图法"><span class="toc-text">软件测试&amp;因果图法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-text">前言</span></a></li></ol>
+  <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#软件测试-amp-因果图法"><span class="toc-text">软件测试&amp;因果图法</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#前言"><span class="toc-text">前言</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#因果图"><span class="toc-text">因果图</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#程序输入之间的关系"><span class="toc-text">程序输入之间的关系</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#输入之间的关系表示"><span class="toc-text">输入之间的关系表示</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#输出之间的关系"><span class="toc-text">输出之间的关系</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#输入与输入出之间的关系"><span class="toc-text">输入与输入出之间的关系</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#输入输出关系表示方式"><span class="toc-text">输入输出关系表示方式</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#因果图生成测试决策表"><span class="toc-text">因果图生成测试决策表</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#案例2-生成因果图"><span class="toc-text">案例2:生成因果图</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#测试案例生成原则"><span class="toc-text">测试案例生成原则</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#决策表"><span class="toc-text">决策表</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#总结"><span class="toc-text">总结</span></a></li></ol>
 </div>
 
         <p>[TOC]</p>
-<h2 id="软件测试-amp-因果图法"><a href="#软件测试-amp-因果图法" class="headerlink" title="软件测试&amp;因果图法"></a>软件测试&amp;因果图法</h2><p>&emsp;&emsp;边界值分析和等价类划分的一个弱点是为对输入条件进行的组合进行分析.<br>&emsp;&emsp;举例来所， 当程序需要判断你的性别(‘男’, ‘女’)，从而进行下一步的判断，是进入那个程序界面。那么男和女这两个输入值的关系就是<u>有且只有一个，切必须为男或女，不能为空</u>程序才可以进行下一步;<br>&emsp;&emsp;因果图不光表明输入之间的关系，还表示了输入与输出之间的关系，上面<u>输入</u>的’男’或’女’在只有<u>输出</u>一个结果，选择后都可以进入系统, 进入这个系统代表输入和输出之间的关系为’恒等关系’;</p>
-<p><img src="/image/ygt1.png" alt="alt 因果图1" title="因果图1.1"></p>
+<h1 id="软件测试-amp-因果图法"><a href="#软件测试-amp-因果图法" class="headerlink" title="软件测试&amp;因果图法"></a>软件测试&amp;因果图法</h1><p>&emsp;&emsp;边界值分析法和等价类划分法的一个弱点是没有对<u><font color="red">输入输出以及输入与输出之间</font></u>的关系进行进行分析.<br>&emsp;&emsp;举例来所， 当程序需要判断你的性别(‘男’, ‘女’)，从而进行下一步的判断，从而进入下一步判断. 那么男和女这两个输入值的之间关系就是<u>有且只有一个，且必须为男或女，不能为空</u>(没有人的性别是这两个之间的其他吧!)程序才可以进行下一步;<br>&emsp;&emsp;<font size="4" color="red">因果图不光表明输入, 输出自己的内部的关系,还表示了输入与输出之间的关系</font>上面<u>输入</u>的’男’或’女’在输入<u>输出</u>一个果，选择后都可以进入系统,进入这个系统代表输入和输出之间的关系为’恒等关系’<br><img src="/image/programTest/ygt1.png"></p>
 <a id="more"></a>
 <ul>
 <li>其中A, B代表输入项</li>
 <li>o:字母代表输入向的关系(唯一)</li>
 <li>C:代表输入输出的关系(恒等)</li>
-<li>D:代表输出结果<blockquote>
-<p>所以因果图是用来表示输入之间的关系<br>用于表示输入与输出之间关系的一种图</p>
-</blockquote>
-<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2></li>
+<li>D:代表输出结果</li>
 </ul>
-<ol>
+<blockquote>
+<p>所以因果图是用来表示输入之间的关系<br>用于表示输入与输出之间的关系<br>用于表示输出之间的关系  </p>
+</blockquote>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><ol>
 <li>了解输入之间的关系, 并使用图标表示;</li>
 <li>了解输入与输出之间的关系, 并使用图表示;</li>
-<li>距离说明因果图法;</li>
+<li>举例说明因果图法;</li>
 </ol>
+<h1 id="因果图"><a href="#因果图" class="headerlink" title="因果图"></a>因果图</h1><p>&emsp;因果图是用于表示输入与输出作用关系,输入之间的关系,还有输出之间关系的一种图标,还要考虑输出情况,因此一般使用C表示输入,e表示输出.输入与输出每一项可以表示为0或1,分别代表了,0表示不会出现,1表示结果出现;</p>
+<h1 id="程序输入之间的关系"><a href="#程序输入之间的关系" class="headerlink" title="程序输入之间的关系"></a>程序输入之间的关系</h1><p>&emsp;程序输入之间的约束关系有4种, 因为有些输入会影响其他的输入, 比如所选择你所居住的地点,先输入城市,然后选择市,然后区,每一项都会影响下一项.所以他们之间的关系为R(要求),他们必须具有一致性;</p>
+<img src="/image/programTest/inputRelation1.png">
 
+<h2 id="输入之间的关系表示"><a href="#输入之间的关系表示" class="headerlink" title="输入之间的关系表示"></a>输入之间的关系表示</h2><ul>
+<li>E(Exclusive)异: 输入项a,b必须有只有一个1, 即输入项目<font color="red">不能</font>全为1,相当于异运算(保证输入项必须为1);</li>
+<li>I(at lest one)或: a,b和c中至少有一个必须为1, 即a,b,c不能同时为0;</li>
+<li>O(one and only one)唯一: a,b有且仅有一个<font color="red">必须</font>为1;</li>
+<li>R(Requires)要求: a,b必须同时相同, a为1,b就要为1;</li>
+</ul>
+<img src="/image/programTest/inputRelation2.png">
+<img src="/image/programTest/inputRelation3.png">
+
+<blockquote>
+<p>E: 比如捐款支付宝捐款界面, 可以选择捐钱,或捐物,也可以直接进入程序;<br>I: 比如注册程序中, 选择输入电话, 邮箱, qq必须选择一个;<br>O: 比如性别选项, 只可以选择男或女,必须选择一个, 不能为空;<br>R: 比如输入城市, 先输入省,那么市要根据省来;</p>
+</blockquote>
+<h2 id="输出之间的关系"><a href="#输出之间的关系" class="headerlink" title="输出之间的关系"></a>输出之间的关系</h2><ul>
+<li>输入的依赖关系只有一种那就是M(强制), 因为程序的输出中a为1那么另外结果就一定为0;<img src="/image/programTest/outputRelation.png">
+
+</li>
+</ul>
+<h1 id="输入与输入出之间的关系"><a href="#输入与输入出之间的关系" class="headerlink" title="输入与输入出之间的关系"></a>输入与输入出之间的关系</h1><p>&emsp;输入与输出的关系可以分为4种,分别文为恒等,非(~),或(V),与(Λ).  </p>
+<h2 id="输入输出关系表示方式"><a href="#输入输出关系表示方式" class="headerlink" title="输入输出关系表示方式"></a>输入输出关系表示方式</h2><ul>
+<li>恒等: 要求程序有1个输入, 一个输出出, 输入与输出保持一致, 即输入1输出1;</li>
+<li>非(~): 要求程序有1个输入, 一个输出, 输出事输入的取反, 即输入1输入0;</li>
+<li>或(V): 可以有任意个输入, 但是输入有一个为1,那么输出为1, 否者为0(和运算符|很相似,表示一个为真,那么为真);</li>
+<li>与(Λ): 可以有任意个输入, 但是要求输入全为1,那么输出为1,否者为0(相当于&amp;运算,要求全为真);<table><tr><td bgcolor="yellow" align="center">关系或(V)和关系 与(Λ)可以符号逆时针旋转90°,变为或(>) 与(<).可以看出或(>)对条件宽松,所以1个为真即为真,与(<)条件比较紧所以要求条件全为真;</td></tr></table>  
+<img src="/image/programTest/inputAndOutputRelation.png">
+# 具体案例分析
+## 案例一:简单输入程序
+> 规定1: 输入项1: 字符"#" or"*";  
+> 规定2: 输入项2: 必须是数字;  
+> 输出项1错误: N, 输出向2错误: M  
+> 全部正确, 修改成功;
+<img src="/image/programTest/example1.png">
+
+</li>
+</ul>
+<h1 id="因果图生成测试决策表"><a href="#因果图生成测试决策表" class="headerlink" title="因果图生成测试决策表"></a>因果图生成测试决策表</h1><h2 id="案例2-生成因果图"><a href="#案例2-生成因果图" class="headerlink" title="案例2:生成因果图"></a>案例2:生成因果图</h2><h2 id="测试案例生成原则"><a href="#测试案例生成原则" class="headerlink" title="测试案例生成原则"></a>测试案例生成原则</h2><h2 id="决策表"><a href="#决策表" class="headerlink" title="决策表"></a>决策表</h2><h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1>
       
 
       
